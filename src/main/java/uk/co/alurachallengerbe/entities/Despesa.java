@@ -1,6 +1,6 @@
 package uk.co.alurachallengerbe.entities;
 
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -11,8 +11,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import uk.co.alurachallengerbe.entities.enums.Categoria;
+
 @Entity
 @Table(name = "tb_despesa")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Despesa {
 
 	@Id
@@ -21,19 +29,22 @@ public class Despesa {
 	private String descricao;
 	private Double valor;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant data;
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+	private LocalDate data;
+	
+	private Integer categoria;
 	
 	public Despesa() {
 		
 	}
 
-	public Despesa(Long id, String descricao, Double valor, Instant data) {
+	public Despesa(Long id, String descricao, Double valor, LocalDate data, Categoria categoria) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
+		setCategoria(categoria);
 	}
 	
 	@Override
@@ -77,11 +88,24 @@ public class Despesa {
 		this.valor = valor;
 	}
 
-	public Instant getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Instant data) {
+	public void setData(LocalDate data) {
 		this.data = data;
+	}
+	
+	public Categoria getCategoria() throws IllegalAccessException{
+		if(categoria != null) {
+			return Categoria.valueOf(categoria);
+		}
+		return null;
+	}
+	
+	public void setCategoria(Categoria categoria) {
+		if (categoria != null) {
+			this.categoria = categoria.getCode();
+		}
 	}
 }

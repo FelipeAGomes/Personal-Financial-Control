@@ -1,7 +1,7 @@
 package uk.co.alurachallengerbe.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -12,8 +12,15 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "tb_receita")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Receita implements Serializable{	
 	private static final long serialVersionUID = 1L;
 	
@@ -23,14 +30,14 @@ public class Receita implements Serializable{
 	private String descricao;
 	private Double valor;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	private Instant data;
+	@JsonFormat(pattern = "dd-MM-yyyy", timezone = "GMT+8")
+	private LocalDate data;
 	
 	public Receita() {
 		
 	}
 
-	public Receita(Long id, String descricao, Double valor, Instant data) {
+	public Receita(Long id, String descricao, Double valor, LocalDate data) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -79,11 +86,11 @@ public class Receita implements Serializable{
 		this.valor = valor;
 	}
 
-	public Instant getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Instant data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 }

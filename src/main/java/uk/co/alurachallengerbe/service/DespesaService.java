@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import uk.co.alurachallengerbe.entities.Despesa;
+import uk.co.alurachallengerbe.entities.enums.Categoria;
 import uk.co.alurachallengerbe.repositories.DespesaRepository;
 import uk.co.alurachallengerbe.services.exceptions.DatabaseException;
 import uk.co.alurachallengerbe.services.exceptions.ResourceNotFoundException;
@@ -30,7 +31,14 @@ public class DespesaService {
 		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
 	
-	public Despesa insert (Despesa obj) {
+	public List<Despesa> findByDescricao(String descricao) {
+		return repository.findByDescricao(descricao);
+	}
+	
+	public Despesa insert (Despesa obj) throws IllegalAccessException {
+		if (obj.getCategoria() == null) {
+			obj.setCategoria(Categoria.OUTRAS);
+		}
 		return repository.save(obj);
 	}
 	
@@ -59,7 +67,6 @@ public class DespesaService {
 		entity.setData(obj.getData());
 		entity.setDescricao(obj.getDescricao());
 		entity.setId(obj.getId());
-		entity.setValor(obj.getValor());		
-	}
-			
+		entity.setValor(obj.getValor());
+	}			
 }

@@ -1,5 +1,6 @@
 package uk.co.alurachallengerbe.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +30,15 @@ public class ReceitaService {
 		Optional<Receita> obj = repository.findById(id);
 		return obj.orElseThrow(()-> new ResourceNotFoundException(id));
 	}
+	
+	public List<Receita> findByDescricao(String descricao) {
+		return repository.findByDescricao(descricao);
+	}
+	
+	
+//	public List<Receita> findByData(LocalDate data){
+//		return repository.findByData(data);
+//	}
 	
 	public Receita insert (Receita obj) {
 		return repository.save(obj);

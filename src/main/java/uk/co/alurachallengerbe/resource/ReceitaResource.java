@@ -1,6 +1,7 @@
 package uk.co.alurachallengerbe.resource;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,21 @@ public class ReceitaResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/id/{id}")
 	public ResponseEntity<Receita> findById(@PathVariable Long id){
 		Receita obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
+	@GetMapping(value = "/descricao/{descricao}")
+	public List<Receita> findByDescricao(@PathVariable("descricao") String descricao){
+		return service.findByDescricao(descricao);
+	}
+	
+//	@GetMapping(value = "/data/{data}")
+//	public List<Receita> findByData(@PathVariable("data") LocalDate data){
+//		return findByData(data);
+//	}
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
