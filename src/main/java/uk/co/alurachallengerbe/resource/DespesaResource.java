@@ -24,38 +24,44 @@ public class DespesaResource {
 
 	@Autowired
 	private DespesaService service;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Despesa>> findAll(){
+	public ResponseEntity<List<Despesa>> findAll() {
 		List<Despesa> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@GetMapping(value = "/id/{id}")
-	public ResponseEntity<Despesa> findById(@PathVariable("id") Long id){
+	public ResponseEntity<Despesa> findById(@PathVariable("id") Long id) {
 		Despesa obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@GetMapping(value = "/descricao/{descricao}")
-	public List<Despesa> findByDescricao(@PathVariable("descricao") String descricao){
+	public List<Despesa> findByDescricao(@PathVariable("descricao") String descricao) {
 		return service.findByDescricao(descricao);
 	}
-	
+
+	@GetMapping(value = "data/{year}/{month}")
+	public ResponseEntity<List<Despesa>> findDataByMonth(@PathVariable Integer year, @PathVariable Integer month) {
+		List<Despesa> list = service.findByMonthAndYear(year, month);
+		return ResponseEntity.ok().body(list);
+	}
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Despesa> update(@PathVariable Long id, @RequestBody Despesa obj){
+	public ResponseEntity<Despesa> update(@PathVariable Long id, @RequestBody Despesa obj) {
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<Despesa> insert(@RequestBody Despesa obj) throws IllegalAccessException{
+	public ResponseEntity<Despesa> insert(@RequestBody Despesa obj) throws IllegalAccessException {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).body(obj);

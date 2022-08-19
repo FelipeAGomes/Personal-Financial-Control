@@ -28,14 +28,14 @@ public class Despesa {
 	private Long id;
 	private String descricao;
 	private Double valor;
-	
-	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+
+	@JsonFormat(pattern = "dd-MM-yyyy", timezone = "GMT+8")
 	private LocalDate data;
-	
+
 	private Integer categoria;
-	
+
 	public Despesa() {
-		
+
 	}
 
 	public Despesa(Long id, String descricao, Double valor, LocalDate data, Categoria categoria) {
@@ -46,7 +46,7 @@ public class Despesa {
 		this.data = data;
 		setCategoria(categoria);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -95,14 +95,14 @@ public class Despesa {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-	
-	public Categoria getCategoria() throws IllegalAccessException{
-		if(categoria != null) {
+
+	public Categoria getCategoria() throws IllegalAccessException {
+		if (categoria != null) {
 			return Categoria.valueOf(categoria);
 		}
 		return null;
 	}
-	
+
 	public void setCategoria(Categoria categoria) {
 		if (categoria != null) {
 			this.categoria = categoria.getCode();

@@ -9,6 +9,8 @@ import uk.co.alurachallengerbe.entities.Receita;
 
 public interface ReceitaRepository extends JpaRepository<Receita, Long>{
 	
-	List<Receita> findByDescricao(String descricao);
-//	List<Receita> findByData(LocalDate data);
+	List<Receita> findByDescricaoContaining(String descricao);
+	
+	List<Receita> findByDataGreaterThanEqualAndDataLessThan(
+		LocalDate of, LocalDate of2);
 }

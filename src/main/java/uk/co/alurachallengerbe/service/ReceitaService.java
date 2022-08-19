@@ -32,13 +32,13 @@ public class ReceitaService {
 	}
 	
 	public List<Receita> findByDescricao(String descricao) {
-		return repository.findByDescricao(descricao);
+		return repository.findByDescricaoContaining(descricao);
 	}
 	
-	
-//	public List<Receita> findByData(LocalDate data){
-//		return repository.findByData(data);
-//	}
+	public List<Receita> findByMonthAndYear(Integer year, Integer month) {
+		return repository.findByDataGreaterThanEqualAndDataLessThan(
+			LocalDate.of(year, month, 1), LocalDate.of(year, month + 1, 1));// ano, mes , dia
+	}
 	
 	public Receita insert (Receita obj) {
 		return repository.save(obj);

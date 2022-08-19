@@ -31,7 +31,7 @@ public class Receita implements Serializable{
 	private Double valor;
 	
 	@JsonFormat(pattern = "dd-MM-yyyy", timezone = "GMT+8")
-	private LocalDate data;
+	private LocalDate data = LocalDate.now();
 	
 	public Receita() {
 		
