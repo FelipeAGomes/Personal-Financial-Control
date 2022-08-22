@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -33,16 +35,21 @@ public class Receita implements Serializable{
 	@JsonFormat(pattern = "dd-MM-yyyy", timezone = "GMT+8")
 	private LocalDate data = LocalDate.now();
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Usuario usuarioReceita;
+	
 	public Receita() {
 		
 	}
 
-	public Receita(Long id, String descricao, Double valor, LocalDate data) {
+	public Receita(Long id, String descricao, Double valor, LocalDate data, Usuario usuarioReceita) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
+		this.usuarioReceita = usuarioReceita;
 	}
 
 	@Override
@@ -92,5 +99,9 @@ public class Receita implements Serializable{
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+	
+	public Usuario getUsuarioReceita() {
+		return usuarioReceita;
 	}
 }

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -33,18 +35,23 @@ public class Despesa {
 	private LocalDate data;
 
 	private Integer categoria;
+	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Usuario usuarioDespesa;
 
 	public Despesa() {
 
 	}
 
-	public Despesa(Long id, String descricao, Double valor, LocalDate data, Categoria categoria) {
+	public Despesa(Long id, String descricao, Double valor, LocalDate data, Categoria categoria, Usuario usuarioDespesa) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;
 		setCategoria(categoria);
+		this.usuarioDespesa = usuarioDespesa;
 	}
 
 	@Override
@@ -107,5 +114,9 @@ public class Despesa {
 		if (categoria != null) {
 			this.categoria = categoria.getCode();
 		}
+	}
+	
+	public Usuario getUsuarioDespesa() {
+		return usuarioDespesa;
 	}
 }
