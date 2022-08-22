@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import uk.co.alurachallengerbe.service.DespesaService;
 
 @RestController
 @RequestMapping(value = "/despesas")
+@Profile(value = {"prod", "test"})
 public class DespesaResource {
 
 	@Autowired
@@ -31,7 +33,7 @@ public class DespesaResource {
 		return ResponseEntity.ok().body(list);
 	}
 
-	@GetMapping(value = "/id/{id}")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<Despesa> findById(@PathVariable("id") Long id) {
 		Despesa obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
