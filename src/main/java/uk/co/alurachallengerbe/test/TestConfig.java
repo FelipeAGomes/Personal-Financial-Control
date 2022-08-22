@@ -33,27 +33,28 @@ public class TestConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Usuario u1 = new Usuario(null, "Felipe", "Gomes", "1234", "felipe@gmail.com");
+		Usuario u1 = new Usuario(null, "Felipe", "Gomes", "1234", "Felipe@gmail.com");
+		Usuario u2 = new Usuario(null, "Joao", "Gomes", "1234", "Joao@gmail.com");
 
-		usuarioRepository.saveAll(Arrays.asList(u1));
+		usuarioRepository.saveAll(Arrays.asList(u1, u2));
 
 		Receita r1 = new Receita(null, "teste", (double) 1500, LocalDate.parse("2018-11-27"), u1);
-		Receita r2 = new Receita(null, "teste", (double) 15, LocalDate.parse("2018-10-22"), u1);
+		Receita r2 = new Receita(null, "teste", (double) 15, LocalDate.parse("2018-10-22"), u2);
 		Receita r3 = new Receita(null, "teste2", (double) 157, LocalDate.parse("2018-10-25"), u1);
-		Receita r4 = new Receita(null, "teste2", (double) 875, LocalDate.parse("2018-09-26"), u1);
+		Receita r4 = new Receita(null, "teste2", (double) 875, LocalDate.parse("2018-09-26"), u2);
 		Receita r5 = new Receita(null, "teste3", (double) 780, LocalDate.parse("2018-05-17"), u1);
-		Receita r6 = new Receita(null, "teste4", (double) 570, LocalDate.parse("2018-02-15"), u1);
+		Receita r6 = new Receita(null, "teste4", (double) 570, LocalDate.parse("2018-02-15"), u2);
 		Receita r7 = new Receita(null, "teste4", (double) 680, LocalDate.parse("2018-03-12"), u1);
 
 		receitaRepository.saveAll(Arrays.asList(r1, r2, r3, r4, r5, r6, r7));
 
 		Despesa d1 = new Despesa(null, "teste", (double) 1500, LocalDate.parse("2018-12-27"), Categoria.EDUCACAO, u1);
-		Despesa d2 = new Despesa(null, "teste", (double) 15, LocalDate.parse("2018-10-22"), Categoria.ALIMENTACAO, u1);
+		Despesa d2 = new Despesa(null, "teste", (double) 15, LocalDate.parse("2018-10-22"), Categoria.ALIMENTACAO, u2);
 		Despesa d3 = new Despesa(null, "teste2", (double) 157, LocalDate.parse("2018-10-25"), Categoria.IMPREVISTOS,
 				u1);
-		Despesa d4 = new Despesa(null, "teste2", (double) 875, LocalDate.parse("2018-09-26"), Categoria.LAZER, u1);
+		Despesa d4 = new Despesa(null, "teste2", (double) 875, LocalDate.parse("2018-09-26"), Categoria.LAZER, u2);
 		Despesa d5 = new Despesa(null, "teste3", (double) 780, LocalDate.parse("2018-05-17"), Categoria.MORADIA, u1);
-		Despesa d6 = new Despesa(null, "teste4", (double) 570, LocalDate.parse("2018-02-15"), Categoria.SAUDE, u1);
+		Despesa d6 = new Despesa(null, "teste4", (double) 570, LocalDate.parse("2018-02-15"), Categoria.SAUDE, u2);
 		Despesa d7 = new Despesa(null, "teste4", (double) 680, LocalDate.parse("2018-03-12"), Categoria.TRANSPORTE, u1);
 
 		despesaRepository.saveAll(Arrays.asList(d1, d2, d3, d4, d5, d6, d7));
