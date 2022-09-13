@@ -14,15 +14,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name = "tb_receita")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Receita implements Serializable{	
 	private static final long serialVersionUID = 1L;
 	

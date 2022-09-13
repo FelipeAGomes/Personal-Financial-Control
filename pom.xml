@@ -13,7 +13,7 @@
 	<artifactId>alura-challenger-be</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>alura-challenger-be</name>
-	<description>Accounting management system</description>
+	<description>Alura Challenger</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -30,7 +30,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -50,9 +49,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+			<version>2.7.2</version>
+			<type>maven-plugin</type>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>Alura-Challenger</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

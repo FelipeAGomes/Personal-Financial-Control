@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +30,8 @@ public class DespesaResource {
 	private DespesaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Despesa>> findAll() {
-		List<Despesa> list = service.findAll();
+	public ResponseEntity<Page<Despesa>> findAll(Pageable paginacao) {		
+		Page<Despesa> list = service.findAll(paginacao);		
 		return ResponseEntity.ok().body(list);
 	}
 

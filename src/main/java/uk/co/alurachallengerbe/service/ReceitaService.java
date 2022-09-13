@@ -9,6 +9,8 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import uk.co.alurachallengerbe.entities.Receita;
@@ -22,8 +24,8 @@ public class ReceitaService {
 	@Autowired
 	private ReceitaRepository repository;
 	
-	public List<Receita> findAll(){
-		return repository.findAll();
+	public Page<Receita> findAll(Pageable paginacao){
+		return repository.findAll(paginacao);
 	}
 	
 	public Receita findById(Long id) {
