@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import uk.co.alurachallengerbe.dto.RelatorioDTO;
@@ -22,7 +23,7 @@ public class RelatorioService {
 	@Autowired
 	public ReceitaRepository receitaRepository;
 
-	public RelatorioDTO getRelatorio(int year, int month) {
+	public RelatorioDTO getRelatorio(int year, int month, Pageable paginacao) {
 
 		List<Despesa> despesaList = despesaRepository.findByDataGreaterThanEqualAndDataLessThan(
 				LocalDate.of(year, month, 1), LocalDate.of(year, month + 1, 1));

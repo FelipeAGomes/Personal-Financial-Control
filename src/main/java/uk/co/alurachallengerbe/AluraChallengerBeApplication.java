@@ -7,7 +7,7 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @SpringBootApplication
 @EnableSpringDataWebSupport // para paginacao
-@EnableCaching
+@EnableCaching // para habilitar o uso de cache
 public class AluraChallengerBeApplication {
 
 	public static void main(String[] args) {
